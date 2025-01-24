@@ -23,7 +23,6 @@ export const PokemonCards = () => {
     JSON.parse(localStorage.getItem('favorites')) || []
   )
 
-  // Função para buscar os tipos e raridades, memorizada com useCallback
   const fetchFilters = useCallback(async () => {
     try {
       const [typesResponse, raritiesResponse] = await Promise.all([
@@ -35,9 +34,8 @@ export const PokemonCards = () => {
     } catch (err) {
       console.error('Erro ao carregar filtros:', err)
     }
-  }, []) // A função será memorizada e não será recriada
+  }, []) 
 
-  // Função para buscar as cartas
   const fetchCards = useCallback(
     async (currentPage, searchTerm, type, rarity) => {
       setLoading(true)
@@ -68,17 +66,15 @@ export const PokemonCards = () => {
       }
     },
     []
-  ) // A função será memorizada e não será recriada
+  ) 
 
-  // Atualiza os filtros ao carregar o componente
   useEffect(() => {
     fetchFilters()
-  }, [fetchFilters]) // Adiciona fetchFilters como dependência
+  }, [fetchFilters]) 
 
-  // Atualiza as cartas ao mudar de página, buscar ou alterar filtros
   useEffect(() => {
     fetchCards(page, searchTerm, selectedType, selectedRarity)
-  }, [fetchCards, page, searchTerm, selectedType, selectedRarity]) // Inclui todas as dependências
+  }, [fetchCards, page, searchTerm, selectedType, selectedRarity]) 
 
   const handleSearch = () => {
     setPage(1)

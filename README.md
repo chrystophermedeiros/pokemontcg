@@ -6,7 +6,7 @@ Explore uma vasta coleção de cartas do Pokémon TCG. Filtre por tipos, raridad
 
 
 ### 📃 Visitar:
-<a href="https://pokemontcg-mu.vercel.app/"> <button>Baixar currículo </button> </a>
+<a href="https://pokemontcg-mu.vercel.app/"> <button>Visitar site </button> </a>
 
 
 --- 
@@ -21,10 +21,3 @@ Explore uma vasta coleção de cartas do Pokémon TCG. Filtre por tipos, raridad
   <img src="https://img.shields.io/badge/-WhatsApp-25d366?style=flat-square&labelColor=25d366&logo=whatsapp&logoColor=white&link=API-DO-SEU-WHATSAPP" alt="WhatsApp"/></a>
 </p>
 
---- 
-
-### Visitors Count
-
-<div align="left">
-<p align="left"><img align="center" src="https://profile-counter.glitch.me/{chrystophermedeiros/pokemontcg}/count.svg" /></p> 
-<br></div>
