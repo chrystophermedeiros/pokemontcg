@@ -1,0 +1,61 @@
+.card {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0;
+  padding: 20px;
+
+  .card-itens {
+    height: 350px;
+    max-width: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5px;
+    text-align: center;
+    background-color: var(--color-background-segundary);
+    margin: 20px 2%;
+    border-radius: 20px;
+    padding: 2px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    position: relative;
+
+    .pokemon-image {
+      cursor: pointer;
+
+      width: 95%;
+      border: 0px solid #000000;
+      margin-top: 10px;
+
+      img {
+        border-radius: 2%;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px
+          6px;
+        height: 100%;
+      }
+      img:hover {
+        opacity: 0.9;
+        scale: 1.1;
+        transition: var(--transition);
+      }
+    }
+  }
+}
+
+.button-liberar {
+    display: flex;
+    align-items:center ;
+    justify-content: center;
+    width: 50%;
+    height: 36px;
+    font-size: small;
+    background-color: var(--color-background-danger);
+    color: var(--color-text-white);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
