@@ -4,7 +4,7 @@ import { SitemapStream, streamToPromise } from 'sitemap';
 
 async function generateSitemap() {
   const sitemapStream = new SitemapStream({
-    hostname: 'https://cmsportfolioprofissional.netlify.app/',
+    hostname: 'https://pokemontcg-mu.vercel.app/',
   });
 
   // Adicione suas URLs aqui
