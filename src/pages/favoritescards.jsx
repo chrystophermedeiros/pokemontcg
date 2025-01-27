@@ -54,7 +54,7 @@ const FavoriteCards = () => {
         {favorites.map(card => (
           <div key={card.id} className="card-itens">
             
-            <div className="pokemon-image">
+            <div className="pokemon-images">
             <h3>{card.name}</h3>
               <img src={card.images.small} alt={card.name} />
             </div>
