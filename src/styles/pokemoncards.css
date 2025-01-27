@@ -94,7 +94,6 @@
 }
 
 
-
 .card {
   width: 100%;
   display: grid;
@@ -198,6 +197,13 @@
   .pagination {
     gap: 4px;
   }
+
+  button, img, .pokemon-image {
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    outline: none; 
+  }
+  
   h1 {
     font-size: 20px;
   }

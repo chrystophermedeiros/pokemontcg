@@ -10,11 +10,6 @@
   appearance: none;
   text-decoration: none;
   list-style: none;
-  
-}
-
-button, img, .pokemon-image {
-  user-select: none;
 }
 
 .container{
