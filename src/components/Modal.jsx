@@ -37,6 +37,7 @@ export default function BasicModal({ cardData, open, onClose }) {
             src={cardData.images.large}
             alt={cardData.name}
             className="modal-image"
+            loading='lazy'
           />
         )}
        </div>

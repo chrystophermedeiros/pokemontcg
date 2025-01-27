@@ -45,6 +45,6 @@ body {
   --color-text-highlight: #ffb347;
   --color-accent: #204060;
   --color-border: #cacaca; 
-  --transition: all 400ms ease; 
+  --transition: all 400ms ease-in-out; 
 }
 

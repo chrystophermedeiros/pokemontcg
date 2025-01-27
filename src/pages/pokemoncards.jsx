@@ -202,6 +202,7 @@ export const PokemonCards = () => {
                             setSelectedCard(card)
                           }
                         }}
+                        loading='lazy'
                         src={card.images.small}
                         alt={card.name}
                       />

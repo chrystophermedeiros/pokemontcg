@@ -56,7 +56,7 @@ const FavoriteCards = () => {
             
             <div className="pokemon-images">
             <h3>{card.name}</h3>
-              <img src={card.images.small} alt={card.name} />
+              <img loading='lazy' src={card.images.small} alt={card.name} />
             </div>
 
             <div
