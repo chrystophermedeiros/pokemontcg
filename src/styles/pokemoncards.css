@@ -123,7 +123,6 @@
     .pokemon-image {
       cursor: pointer;
       height: 80%;
-      width: 95%;
       border: 0px solid black;
       position: relative;
       bottom: 8%;
