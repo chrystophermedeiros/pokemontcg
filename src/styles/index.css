@@ -13,6 +13,10 @@
   
 }
 
+button, img, .pokemon-image {
+  user-select: none;
+}
+
 .container{
   margin-top: 80px;
 
