@@ -136,7 +136,7 @@
       }
       img:hover {
         opacity: 0.9;
-        scale: 1.1;
+        transform: scale(1.2);
         transition: var(--transition);
       }
     }
@@ -206,6 +206,22 @@
     border-radius: 36px;
     
   }
+
+  .card {
+     .card-itens {
+      .pokemon-image {
+        img {
+          height: 100%;
+        }
+        img:hover {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
+      }
+    }
+  }
+  
 
   .pagination .MuiPaginationItem-root {
     min-width: 22px;
