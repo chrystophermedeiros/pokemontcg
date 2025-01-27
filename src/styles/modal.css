@@ -45,10 +45,7 @@
   border-radius: 8px;
   border: 2px solid #ddd;
 }
-.modal-image:hover {
-  scale: 1.1; 
-  transition: var(--transition);
-}
+
 
 .modal-button {
   margin-top: 16px;
