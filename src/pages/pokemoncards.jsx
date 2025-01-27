@@ -229,7 +229,7 @@ export const PokemonCards = () => {
                           toggleFavorite(card.id)
                         }}
                       >
-                        {favorites.includes(card.id) ? 'Leberar' : 'Capturar'}
+                        {favorites.includes(card.id) ? 'Liberar' : 'Capturar'}
                       </button>
                     </div>
                   </div>
