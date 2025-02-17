@@ -5,7 +5,7 @@
   align-items: center;
   background-color: var(--color-background-segundary);
   text-align: center;
-  min-width: 90vw;
+  max-width: 40vw;
   max-height: 80vh;
   overflow-y: auto;
   position: relative;
@@ -42,7 +42,7 @@
 
 .modal-image {
   width: 100%;
-  max-width: 300px;
+  max-width: 200px;
   margin-top: 16px;
   border-radius: 8px;
   border: 2px solid #ddd;
