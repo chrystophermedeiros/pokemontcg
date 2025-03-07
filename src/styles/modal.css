@@ -112,7 +112,7 @@
 
 @media (max-width: 480px) {
   .modal-container {
-    max-width: 95vw;
+    min-width: 90vw;
     max-height: 80vh;
     padding: 16px;
   }
