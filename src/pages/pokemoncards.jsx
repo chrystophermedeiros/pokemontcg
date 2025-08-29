@@ -23,21 +23,34 @@ export const PokemonCards = () => {
     JSON.parse(localStorage.getItem('favorites')) || []
   )
 
+  // Carregar filtros de tipos e raridades
   const fetchFilters = useCallback(async () => {
     try {
       const [typesResponse, raritiesResponse] = await Promise.all([
         axios.get('https://api.pokemontcg.io/v2/types'),
-        axios.get('https://api.pokemontcg.io/v2/rarities'),
+        axios.get('https://api.pokemontcg.io/v2/rarities')
       ])
       setTypes(typesResponse.data.data)
       setRarities(raritiesResponse.data.data)
     } catch (err) {
       console.error('Erro ao carregar filtros:', err)
     }
-  }, []) 
+  }, [])
 
+  // Buscar cartas com cache no localStorage
   const fetchCards = useCallback(
     async (currentPage, searchTerm, type, rarity) => {
+      const cacheKey = `${currentPage}-${searchTerm}-${type}-${rarity}`
+      const cached = localStorage.getItem(cacheKey)
+
+      if (cached) {
+        console.log('Usando cache:', cacheKey)
+        setCards(JSON.parse(cached))
+        return
+      }
+
+      const timerId = `fetchCards-${Date.now()}`
+      console.time(timerId)
       setLoading(true)
       try {
         const query = []
@@ -47,46 +60,52 @@ export const PokemonCards = () => {
 
         const response = await axios.get('https://api.pokemontcg.io/v2/cards', {
           headers: {
-            Authorization: `Bearer ${import.meta.env.VITE_API_KEY}`,
+            Authorization: `Bearer ${import.meta.env.VITE_API_KEY}`
           },
           params: {
             page: currentPage,
             pageSize: 20,
-            q: query.length > 0 ? query.join(' ') : undefined,
-          },
+            q: query.length > 0 ? query.join(' ') : undefined
+          }
         })
 
         setCards(response.data.data)
+        localStorage.setItem(cacheKey, JSON.stringify(response.data.data))
         setTotalPages(Math.ceil(response.data.totalCount / 20))
-        setLoading(false)
       } catch (err) {
         console.error(err)
         setError('Erro ao carregar as cartas.')
+      } finally {
         setLoading(false)
+        console.timeEnd(timerId)
       }
     },
     []
-  ) 
+  )
 
   useEffect(() => {
     fetchFilters()
-  }, [fetchFilters]) 
+  }, [fetchFilters])
 
   useEffect(() => {
     fetchCards(page, searchTerm, selectedType, selectedRarity)
-  }, [fetchCards, page, searchTerm, selectedType, selectedRarity]) 
+  }, [fetchCards, page, searchTerm, selectedType, selectedRarity])
 
-  const handleSearch = () => {
-    setPage(1)
-    setSearchTerm(search)
+  // Debounce para a busca (0.5s)
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setSearchTerm(search)
+      setPage(1)
+    }, 500)
+    return () => clearTimeout(timeout)
+  }, [search])
+
+  const handleSearchChange = event => {
+    setSearch(event.target.value)
   }
 
   const handlePageChange = (event, value) => {
     setPage(value)
-  }
-
-  const handleSearchChange = event => {
-    setSearch(event.target.value)
   }
 
   const handleTypeChange = event => {
@@ -116,7 +135,6 @@ export const PokemonCards = () => {
       <div className="content">
         <h1>Lista de cartas do Pokémon TCG</h1>
         <p>Total de cartas na página: <strong>{cards.length}</strong> </p>
-        
 
         <div className="search-filter">
           <div className="search">
@@ -124,14 +142,18 @@ export const PokemonCards = () => {
               type="text"
               placeholder="Nome do Pokémon"
               value={search}
+              onChange={handleSearchChange}
               onKeyDown={e => {
                 if (e.key === 'Enter') {
-                  handleSearch()
+                  setSearchTerm(search)
+                  setPage(1)
                 }
               }}
-              onChange={handleSearchChange}
             />
-            <button type="button" onClick={handleSearch}>
+            <button type="button" onClick={() => {
+              setSearchTerm(search)
+              setPage(1)
+            }}>
               <SearchOutlinedIcon />
             </button>
           </div>
@@ -152,8 +174,8 @@ export const PokemonCards = () => {
 
           <div className='content-itens-select'>
             <div className='title-itens'>
-            <FilterListOutlinedIcon />
-            <span>Filtrar por:</span>
+              <FilterListOutlinedIcon />
+              <span>Filtrar por:</span>
             </div>
             
             <div className="custom-select">
@@ -180,6 +202,7 @@ export const PokemonCards = () => {
           </div>
         </div>
       </div>
+      
       <div>
         {cards.length === 0 && !loading && !error && (
           <p>Nenhum Pokémon encontrado com os filtros aplicados.</p>
@@ -248,7 +271,7 @@ export const PokemonCards = () => {
         onChange={handlePageChange}
         showFirstButton
         showLastButton
-        style={{ marginTop: '20px',marginBottom: '20px', justifyContent: 'center', display: 'flex' }}
+        style={{ marginTop: '20px', marginBottom: '20px', justifyContent: 'center', display: 'flex' }}
       />
 
       <BasicModal
