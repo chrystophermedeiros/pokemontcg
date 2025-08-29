@@ -219,6 +219,7 @@ export const PokemonCards = () => {
                   <div className="pokemon-image">
                     {card.images.small ? (
                       <img
+                        title='Clique para ver detalhes'
                         onClick={() => setSelectedCard(card)}
                         onKeyDown={e => {
                           if (e.key === 'Enter') {
@@ -248,6 +249,7 @@ export const PokemonCards = () => {
                             : 'button-favorite--inactive'
                         }`}
                         type="button"
+                        title='Clique para capturar ou liberar'
                         onClick={e => {
                           e.stopPropagation()
                           toggleFavorite(card.id)
